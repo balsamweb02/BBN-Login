@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In or Join — Balsam Business Network | BBN</title>
+<meta name="description" content="Sign in to your Balsam Business Network account or register as a founding member.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="pre-load">
+
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+<!-- Ambient background -->
+<div class="auth-bg" aria-hidden="true">
+  <div class="auth-bg-glow glow-a"></div>
+  <div class="auth-bg-glow glow-b"></div>
+  <div class="auth-mesh"></div>
+  <div class="auth-particles">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<a href="../index.html" class="auth-back magnetic">
+  <i class="fa-solid fa-arrow-left"></i><span>Back to home</span>
+</a>
+
+<main class="auth-stage">
+  <div class="auth-shell" id="auth-shell" data-reveal data-reveal-type="zoom">
+
+    <!-- Brand / narrative panel -->
+    <section class="auth-brand" id="auth-brand">
+      <div class="brand-rings" aria-hidden="true">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+      </div>
+
+      <div class="brand-top">
+        <div class="brand-badge">
+          <span class="badge-letter">B</span>
+        </div>
+        <div class="brand-name">
+          <strong>Balsam Business Network</strong>
+          <span>BBN</span>
+        </div>
+      </div>
+
+      <div class="brand-copy">
+        <span class="tag tag-onmaroon"><span class="sq"></span>Founding Access</span>
+        <h1 class="brand-heading" data-mode="login">Welcome back to<br>the network.</h1>
+        <h1 class="brand-heading brand-heading-alt" data-mode="register">Become a<br>founding member.</h1>
+        <p class="brand-sub" data-mode="login">Pick up where you left off — your circle of trusted connections is waiting.</p>
+        <p class="brand-sub brand-sub-alt" data-mode="register">Get in early. Founding members shape the community and get first access to everything BBN builds.</p>
+      </div>
+
+      <ul class="brand-features">
+        <li data-reveal data-reveal-type="left" data-reveal-delay="1"><i class="fa-solid fa-handshake"></i><span>Trusted business connections</span></li>
+        <li data-reveal data-reveal-type="left" data-reveal-delay="2"><i class="fa-solid fa-rocket"></i><span>Growth &amp; collaboration</span></li>
+        <li data-reveal data-reveal-type="left" data-reveal-delay="3"><i class="fa-solid fa-book-open"></i><span>Continuous learning</span></li>
+      </ul>
+
+      <div class="brand-quote">
+        <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+        <p>Where Business Meets Trust.</p>
+      </div>
+    </section>
+
+    <!-- Form panel -->
+    <section class="auth-form-panel">
+
+      <div class="auth-tabs" role="tablist">
+        <span class="auth-tab-fill" id="tab-fill" aria-hidden="true"></span>
+        <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" data-target="login">Sign In</button>
+        <button class="auth-tab" id="tab-register" role="tab" aria-selected="false" data-target="register">Join BBN</button>
+      </div>
+
+      <div class="auth-forms" id="auth-forms">
+
+        <!-- LOGIN -->
+        <form class="auth-form is-active" id="form-login" novalidate>
+          <div class="form-head">
+            <h2>Sign in</h2>
+            <p>Enter your details to access your BBN account.</p>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-envelope field-icon"></i>
+            <input type="email" id="login-email" placeholder=" " autocomplete="email" required>
+            <label for="login-email">Email address</label>
+            <span class="field-underline"></span>
+            <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="login-password" placeholder=" " autocomplete="current-password" required>
+            <label for="login-password">Password</label>
+            <span class="field-underline"></span>
+            <button type="button" class="field-toggle" data-target="login-password" aria-label="Show password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="form-row">
+            <label class="check">
+              <input type="checkbox" id="login-remember">
+              <span class="check-box"><i class="fa-solid fa-check"></i></span>
+              Remember me
+            </label>
+            <a href="#" class="form-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit">
+            <span class="btn-label">Sign In</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <i class="fa-solid fa-arrow-right btn-arrow"></i>
+          </button>
+
+          <p class="form-switch">New to BBN? <button type="button" class="switch-link" data-target="register">Create an account</button></p>
+        </form>
+
+        <!-- REGISTER -->
+        <form class="auth-form" id="form-register" novalidate>
+          <div class="form-head">
+            <h2>Create your account</h2>
+            <p>Reserve your spot as a founding member.</p>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-user field-icon"></i>
+            <input type="text" id="reg-name" placeholder=" " autocomplete="name" required>
+            <label for="reg-name">Full name</label>
+            <span class="field-underline"></span>
+            <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-envelope field-icon"></i>
+            <input type="email" id="reg-email" placeholder=" " autocomplete="email" required>
+            <label for="reg-email">Email address</label>
+            <span class="field-underline"></span>
+            <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="reg-password" placeholder=" " autocomplete="new-password" required>
+            <label for="reg-password">Password</label>
+            <span class="field-underline"></span>
+            <button type="button" class="field-toggle" data-target="reg-password" aria-label="Show password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+
+          <div class="strength-meter" id="strength-meter">
+            <div class="strength-track"><span class="strength-fill" id="strength-fill"></span></div>
+            <span class="strength-label" id="strength-label">Password strength</span>
+          </div>
+
+          <div class="field">
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="reg-confirm" placeholder=" " autocomplete="new-password" required>
+            <label for="reg-confirm">Confirm password</label>
+            <span class="field-underline"></span>
+            <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
+          </div>
+          <p class="match-hint" id="match-hint"></p>
+
+          <label class="check terms-check">
+            <input type="checkbox" id="reg-terms" required>
+            <span class="check-box"><i class="fa-solid fa-check"></i></span>
+            I agree to the <a href="#" class="form-link">Terms</a> &amp; <a href="#" class="form-link">Privacy Policy</a>
+          </label>
+
+          <button type="submit" class="btn btn-primary auth-submit">
+            <span class="btn-label">Create Account</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <i class="fa-solid fa-arrow-right btn-arrow"></i>
+          </button>
+
+          <p class="form-switch">Already a member? <button type="button" class="switch-link" data-target="login">Sign in</button></p>
+        </form>
+
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="auth-toast" id="auth-toast">
+  <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
+  <div class="toast-text">
+    <strong id="toast-title">Almost there</strong>
+    <span id="toast-msg">Registration isn't live yet — stay tuned for launch.</span>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
