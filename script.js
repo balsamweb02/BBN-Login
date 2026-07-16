@@ -89,8 +89,13 @@ const formLogin = document.getElementById('form-login');
 const formRegister = document.getElementById('form-register');
 const authBrand = document.getElementById('auth-brand');
 
+let authMode = 'login';
+const FLIP_CLASSES = ['flip-exit-left', 'flip-exit-right', 'flip-enter-left', 'flip-enter-right'];
+
 function setMode(mode, animate = true) {
+  if (mode === authMode) return;
   const goingToRegister = mode === 'register';
+  authMode = mode;
 
   tabLogin.classList.toggle('active', !goingToRegister);
   tabRegister.classList.toggle('active', goingToRegister);
@@ -98,27 +103,40 @@ function setMode(mode, animate = true) {
   tabRegister.setAttribute('aria-selected', String(goingToRegister));
   tabFill.classList.toggle('on-register', goingToRegister);
 
-  const activeForm = goingToRegister ? formRegister : formLogin;
-  const inactiveForm = goingToRegister ? formLogin : formRegister;
+  const incoming = goingToRegister ? formRegister : formLogin;
+  const outgoing = goingToRegister ? formLogin : formRegister;
+
+  FLIP_CLASSES.forEach((c) => { incoming.classList.remove(c); outgoing.classList.remove(c); });
 
   if (animate) {
-    inactiveForm.classList.add(goingToRegister ? 'exit-left' : '');
-  }
-  inactiveForm.classList.remove('is-active');
-  activeForm.classList.remove('exit-left');
-  activeForm.classList.add('is-active');
+    // outgoing form flips away toward whichever side it's headed
+    outgoing.classList.remove('is-active');
+    outgoing.classList.add(goingToRegister ? 'flip-exit-left' : 'flip-exit-right');
 
-  // Brand panel narrative swap
-  authBrand.classList.add('swap');
-  setTimeout(() => {
-    authBrand.querySelectorAll('.brand-heading').forEach((h) => {
-      h.style.display = h.getAttribute('data-mode') === mode ? '' : 'none';
+    // incoming form starts pre-rotated (no transition), then on the next
+    // frame gets its transition back and rotates in to 0deg
+    incoming.classList.add(goingToRegister ? 'flip-enter-right' : 'flip-enter-left');
+    void incoming.offsetWidth; // force reflow so the start state is committed
+    requestAnimationFrame(() => {
+      incoming.classList.remove('flip-enter-right', 'flip-enter-left');
+      incoming.classList.add('is-active');
     });
-    authBrand.querySelectorAll('.brand-sub').forEach((p) => {
-      p.style.display = p.getAttribute('data-mode') === mode ? '' : 'none';
-    });
-    requestAnimationFrame(() => authBrand.classList.remove('swap'));
-  }, 220);
+
+    setTimeout(() => {
+      outgoing.classList.remove('flip-exit-left', 'flip-exit-right');
+    }, 650);
+  } else {
+    outgoing.classList.remove('is-active');
+    incoming.classList.add('is-active');
+  }
+
+  // Brand panel narrative swap — CSS handles the crossfade via .is-current
+  authBrand.querySelectorAll('.brand-heading').forEach((h) => {
+    h.classList.toggle('is-current', h.getAttribute('data-mode') === mode);
+  });
+  authBrand.querySelectorAll('.brand-sub').forEach((p) => {
+    p.classList.toggle('is-current', p.getAttribute('data-mode') === mode);
+  });
 }
 
 tabLogin.addEventListener('click', () => setMode('login'));
@@ -129,7 +147,7 @@ document.querySelectorAll('.switch-link').forEach((btn) => {
 
 // Initialize brand copy visibility to match default (login) mode
 document.querySelectorAll('.brand-heading, .brand-sub').forEach((el) => {
-  el.style.display = el.getAttribute('data-mode') === 'login' ? '' : 'none';
+  el.classList.toggle('is-current', el.getAttribute('data-mode') === 'login');
 });
 
 // ==========================================================================
@@ -162,39 +180,9 @@ function wireValidity(inputId) {
 ['login-email', 'reg-name', 'reg-email', 'reg-confirm'].forEach(wireValidity);
 
 // ==========================================================================
-// Password strength meter
-// ==========================================================================
-const regPassword = document.getElementById('reg-password');
-const strengthFill = document.getElementById('strength-fill');
-const strengthLabel = document.getElementById('strength-label');
-
-function scorePassword(value) {
-  let score = 0;
-  if (value.length >= 8) score++;
-  if (value.length >= 12) score++;
-  if (/[A-Z]/.test(value)) score++;
-  if (/[0-9]/.test(value)) score++;
-  if (/[^A-Za-z0-9]/.test(value)) score++;
-  return Math.min(score, 5);
-}
-
-if (regPassword) {
-  regPassword.addEventListener('input', () => {
-    const val = regPassword.value;
-    const score = val ? scorePassword(val) : 0;
-    const pct = (score / 5) * 100;
-    const colors = ['#c2453f', '#c2453f', '#d98a3d', '#d9b83d', '#69b04a', '#2e9e5b'];
-    const labels = ['Password strength', 'Weak', 'Weak', 'Fair', 'Good', 'Strong'];
-    strengthFill.style.width = `${pct}%`;
-    strengthFill.style.background = colors[score];
-    strengthLabel.textContent = val ? labels[score] : 'Password strength';
-    checkMatch();
-  });
-}
-
-// ==========================================================================
 // Confirm-password match hint
 // ==========================================================================
+const regPassword = document.getElementById('reg-password');
 const regConfirm = document.getElementById('reg-confirm');
 const matchHint = document.getElementById('match-hint');
 
@@ -209,6 +197,7 @@ function checkMatch() {
   matchHint.classList.toggle('ok', match);
   regConfirm.closest('.field').classList.toggle('is-valid', match);
 }
+if (regPassword) regPassword.addEventListener('input', checkMatch);
 if (regConfirm) regConfirm.addEventListener('input', checkMatch);
 
 // ==========================================================================

@@ -41,21 +41,28 @@
       </div>
 
       <div class="brand-top">
-        <div class="brand-badge">
-          <span class="badge-letter">B</span>
+        <div class="brand-top-row">
+          <div class="brand-logo">
+            <img src="logo.png" alt="Balsam Business Network">
+          </div>
+          <div class="brand-wordmark">
+            <strong>BBN</strong>
+            <span>Business Network</span>
+          </div>
         </div>
-        <div class="brand-name">
-          <strong>Balsam Business Network</strong>
-          <span>BBN</span>
-        </div>
+        <span class="brand-top-rule" aria-hidden="true"></span>
       </div>
 
       <div class="brand-copy">
         <span class="tag tag-onmaroon"><span class="sq"></span>Founding Access</span>
-        <h1 class="brand-heading" data-mode="login">Welcome back to<br>the network.</h1>
-        <h1 class="brand-heading brand-heading-alt" data-mode="register">Become a<br>founding member.</h1>
-        <p class="brand-sub" data-mode="login">Pick up where you left off — your circle of trusted connections is waiting.</p>
-        <p class="brand-sub brand-sub-alt" data-mode="register">Get in early. Founding members shape the community and get first access to everything BBN builds.</p>
+        <div class="brand-heading-stack">
+          <h1 class="brand-heading" data-mode="login">Welcome back to<br>the network.</h1>
+          <h1 class="brand-heading" data-mode="register">Become a<br>founding member.</h1>
+        </div>
+        <div class="brand-sub-stack">
+          <p class="brand-sub" data-mode="login">Pick up where you left off — your circle of trusted connections is waiting.</p>
+          <p class="brand-sub" data-mode="register">Get in early. Founding members shape the community and get first access to everything BBN builds.</p>
+        </div>
       </div>
 
       <ul class="brand-features">
@@ -92,7 +99,6 @@
             <i class="fa-solid fa-envelope field-icon"></i>
             <input type="email" id="login-email" placeholder=" " autocomplete="email" required>
             <label for="login-email">Email address</label>
-            <span class="field-underline"></span>
             <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
           </div>
 
@@ -100,7 +106,6 @@
             <i class="fa-solid fa-lock field-icon"></i>
             <input type="password" id="login-password" placeholder=" " autocomplete="current-password" required>
             <label for="login-password">Password</label>
-            <span class="field-underline"></span>
             <button type="button" class="field-toggle" data-target="login-password" aria-label="Show password">
               <i class="fa-solid fa-eye"></i>
             </button>
@@ -135,7 +140,6 @@
             <i class="fa-solid fa-user field-icon"></i>
             <input type="text" id="reg-name" placeholder=" " autocomplete="name" required>
             <label for="reg-name">Full name</label>
-            <span class="field-underline"></span>
             <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
           </div>
 
@@ -143,7 +147,6 @@
             <i class="fa-solid fa-envelope field-icon"></i>
             <input type="email" id="reg-email" placeholder=" " autocomplete="email" required>
             <label for="reg-email">Email address</label>
-            <span class="field-underline"></span>
             <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
           </div>
 
@@ -151,22 +154,15 @@
             <i class="fa-solid fa-lock field-icon"></i>
             <input type="password" id="reg-password" placeholder=" " autocomplete="new-password" required>
             <label for="reg-password">Password</label>
-            <span class="field-underline"></span>
             <button type="button" class="field-toggle" data-target="reg-password" aria-label="Show password">
               <i class="fa-solid fa-eye"></i>
             </button>
-          </div>
-
-          <div class="strength-meter" id="strength-meter">
-            <div class="strength-track"><span class="strength-fill" id="strength-fill"></span></div>
-            <span class="strength-label" id="strength-label">Password strength</span>
           </div>
 
           <div class="field">
             <i class="fa-solid fa-lock field-icon"></i>
             <input type="password" id="reg-confirm" placeholder=" " autocomplete="new-password" required>
             <label for="reg-confirm">Confirm password</label>
-            <span class="field-underline"></span>
             <i class="fa-solid fa-circle-check field-valid" aria-hidden="true"></i>
           </div>
           <p class="match-hint" id="match-hint"></p>
