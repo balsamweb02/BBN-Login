@@ -464,18 +464,18 @@ button{ font-family:inherit; }
 .field-toggle{
   position:absolute; right:14px; top:0; bottom:0; margin:auto 0; height:32px;
   border:none; background:transparent; cursor:pointer;
-  color: var(--grey-500,#888); font-size:14px;
+  color: var(--grey-600); font-size:14px;
   display:flex; align-items:center; transition: color .2s ease;
 }
 .field-toggle:hover{ color: var(--maroon); }
 
 .field-valid{
   position:absolute; right:16px; top:0; bottom:0; margin:auto 0; height:16px;
-  display:flex; align-items:center; color: #2e9e5b; font-size:15px;
+  display:flex; align-items:center; color: var(--maroon); font-size:15px;
   opacity:0; transform: scale(.5); transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
 }
 .field.is-valid .field-valid{ opacity:1; transform: scale(1); }
-.field.is-invalid input{ border-color:#c2453f; animation: fieldShake .4s ease; }
+.field.is-invalid input{ border-color:var(--maroon-900); animation: fieldShake .4s ease; }
 @keyframes fieldShake{
   0%,100%{ transform: translateX(0); }
   25%{ transform: translateX(-5px); }
@@ -484,10 +484,10 @@ button{ font-family:inherit; }
 
 .match-hint{
   font-size:12px; font-weight:600; margin-top:-10px; height:14px;
-  color:#c2453f; opacity:0; transition: opacity .25s ease;
+  color:var(--maroon-900); opacity:0; transition: opacity .25s ease;
 }
 .match-hint.show{ opacity:1; }
-.match-hint.ok{ color:#2e9e5b; }
+.match-hint.ok{ color:var(--maroon); }
 
 /* ---- checkboxes ---- */
 .check{
@@ -557,7 +557,7 @@ button{ font-family:inherit; }
 .auth-submit.loading .btn-label,
 .auth-submit.loading .btn-arrow{ opacity:0; width:0; }
 .auth-submit.loading .btn-spinner{ display:inline-block; }
-.auth-submit.success{ background: linear-gradient(135deg,#2e9e5b,#1f7a45); border-color:#1f7a45; }
+.auth-submit.success{ background: linear-gradient(135deg,var(--maroon-700),var(--maroon-900)); border-color:var(--maroon-900); }
 .auth-submit.success .btn-spinner{ display:none; }
 .auth-submit.success .btn-label::after{ content: " ✓"; }
 
